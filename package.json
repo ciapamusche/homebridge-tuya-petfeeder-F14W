@@ -1,5 +1,5 @@
 {
-  "name": "homebridge-tuya-petfeeder-f14W",
+  "name": "homebridge-tuya-petfeeder-f14w",
   "version": "0.0.1",
   "description": "Il dispenser di crocchette di cui il tuo gatto non aveva bisogno: Implementazione base di un dispenser F14W basato su App Tuya Smart Life. | The kibble dispenser your cat didn't need: Basic implementation of an F14W dispenser based on Tuya Smart Life App. Features: Single feed control, Multiple feed with configurable portions (1-10) and wait time between portions (5-30s), Multi-language support (IT/EN).",
   "main": "index.js",
@@ -9,7 +9,14 @@
     "homebridge-plugin",
     "tuya",
     "pet feeder",
-    "F14W"
+    "F14W",
+    "smart life",
+    "pet",
+    "feeder",
+    "cat feeder",
+    "dog feeder",
+    "smart pet feeder",
+    "homebridge"
   ],
   "repository": {
     "type": "git",
