@@ -1,0 +1,85 @@
+const { TuyaOpenApiClient } = require('@tuya/tuya-connector-nodejs');
+
+class TuyaPetFeederPlatform {
+  constructor(log, config, api) {
+    this.log = log;
+    this.config = config;
+    this.api = api;
+    this.accessories = []; // Aggiungiamo questa riga
+
+    // Inizializzazione API Tuya
+    this.tuya = new TuyaOpenApiClient({
+      baseUrl: 'https://openapi.tuyaeu.com',
+      accessKey: 'kgyr4cfkpq8uhh37mnfj',
+      secretKey: '2ebbd8af8395436bbf5d3f563a1de618'
+    });
+
+    this.log.info('TuyaPetFeeder platform initialized');
+
+    // Registra il dispositivo quando Homebridge è pronto
+    this.api.on('didFinishLaunching', () => {
+      this.log.info('Registering device...');
+      this.registerDevice();
+    });
+  }
+
+  configureAccessory(accessory) {
+    this.log.info('Loading accessory from cache:', accessory.displayName);
+    this.accessories.push(accessory);
+  }
+
+  async registerDevice() {
+    const deviceId = 'bf855390913fb040b2thq5';
+    
+    try {
+      // Crea l'accessorio
+      const uuid = this.api.hap.uuid.generate(deviceId);
+      const existingAccessory = this.accessories.find(accessory => accessory.UUID === uuid);
+      
+      if (existingAccessory) {
+        this.log.info('Restoring existing accessory from cache:', existingAccessory.displayName);
+        this.setupAccessory(existingAccessory);
+      } else {
+        this.log.info('Adding new accessory');
+        const accessory = new this.api.platformAccessory("Pet Feeder", uuid);
+        this.setupAccessory(accessory);
+        this.api.registerPlatformAccessories("homebridge-tuya-petfeeder", "TuyaPetFeeder", [accessory]);
+      }
+    } catch (error) {
+      this.log.error('Error registering device:', error);
+    }
+  }
+
+  setupAccessory(accessory) {
+    // Aggiungi il servizio Switch
+    const service = accessory.getService(this.api.hap.Service.Switch) || 
+                   accessory.addService(this.api.hap.Service.Switch);
+
+    service.getCharacteristic(this.api.hap.Characteristic.On)
+      .onSet(async (value) => {
+        try {
+          if (value) {
+            // Invia comando per alimentare (1 porzione)
+            await this.tuya.request({
+              path: `/v1.0/devices/bf855390913fb040b2thq5/commands`,
+              method: 'POST',
+              body: {
+                commands: [
+                  {
+                    code: 'manual_feed',
+                    value: 1
+                  }
+                ]
+              }
+            });
+          }
+        } catch (error) {
+          this.log.error('Error setting state:', error);
+        }
+      });
+  }
+}
+
+module.exports = (homebridge) => {
+  homebridge.registerPlatform('homebridge-tuya-petfeeder', 'TuyaPetFeeder', TuyaPetFeederPlatform);
+};

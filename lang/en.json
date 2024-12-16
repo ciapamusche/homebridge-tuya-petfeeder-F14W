@@ -1,0 +1,26 @@
+{
+  "name": "Name",
+  "accessKey": {
+    "title": "Tuya Access Key",
+    "desc": "The access key from your Tuya IoT account"
+  },
+  "secretKey": {
+    "title": "Tuya Secret Key",
+    "desc": "The secret key from your Tuya IoT account"
+  },
+  "deviceId": {
+    "title": "Device ID",
+    "desc": "Your Tuya device ID (e.g., bf855390913fb040b2thq5)"
+  },
+  "region": {
+    "title": "Tuya API Region",
+    "desc": "The Tuya server region to use",
+    "europe": "Europe",
+    "america": "America",
+    "china": "China"
+  },
+  "countryCode": {
+    "title": "Country Code",
+    "desc": "Enter your Tuya country code (e.g., 39 for Italy, 1 for USA)"
+  }
+} 

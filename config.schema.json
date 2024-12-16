@@ -1,0 +1,65 @@
+{
+  "pluginAlias": "TuyaPetFeederF14W",
+  "pluginType": "platform",
+  "singular": true,
+  "schema": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "title": "Name",
+        "type": "string",
+        "required": true,
+        "default": "Pet Feeder F14W"
+      },
+      "language": {
+        "title": "Language",
+        "type": "string",
+        "required": true,
+        "default": "en",
+        "oneOf": [
+          { "title": "English", "enum": ["en"] },
+          { "title": "Italiano", "enum": ["it"] }
+        ]
+      },
+      "accessKey": {
+        "title": "Tuya Access Key",
+        "type": "string",
+        "required": true,
+        "description": "The access key from your Tuya IoT account"
+      },
+      "secretKey": {
+        "title": "Tuya Secret Key",
+        "type": "string",
+        "required": true,
+        "description": "The secret key from your Tuya IoT account"
+      },
+      "countryCode": {
+        "title": "Country Code",
+        "type": "number",
+        "format": "integer",
+        "required": true,
+        "description": "Enter your Tuya country code (e.g., 39 for Italy, 1 for USA)"
+      },
+      "portions": {
+        "title": "Number of Portions (Multiple Feed)",
+        "type": "number",
+        "format": "integer",
+        "minimum": 1,
+        "maximum": 10,
+        "default": 2,
+        "required": true,
+        "description": "Number of portions to dispense when using Multiple Feed (1-10)"
+      },
+      "waitTime": {
+        "title": "Wait Time Between Portions",
+        "type": "number",
+        "format": "integer",
+        "minimum": 5,
+        "maximum": 30,
+        "default": 5,
+        "required": true,
+        "description": "Time to wait between portions in seconds (5-30)"
+      }
+    }
+  }
+} 

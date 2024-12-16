@@ -1,0 +1,38 @@
+{
+  "name": "homebridge-tuya-petfeeder-F14W",
+  "version": "0.0.1",
+  "description": "Homebridge plugin for Tuya Pet Feeder F14W",
+  "main": "index.js",
+  "author": "ciapamusche",
+  "license": "ISC",
+  "keywords": [
+    "homebridge-plugin",
+    "tuya",
+    "pet feeder",
+    "F14W"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ciapamusche/homebridge-tuya-petfeeder-F14W.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ciapamusche/homebridge-tuya-petfeeder-F14W/issues"
+  },
+  "engines": {
+    "node": ">=14.0.0",
+    "homebridge": ">=1.6.0"
+  },
+  "dependencies": {
+    "@tuya/tuya-connector-nodejs": "^2.1.2"
+  },
+  "homepage": "https://github.com/ciapamusche/homebridge-tuya-petfeeder-F14W#readme",
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/ciapamusche"
+  },
+  "files": [
+    "index.js",
+    "config.schema.json",
+    "README.md"
+  ]
+}
