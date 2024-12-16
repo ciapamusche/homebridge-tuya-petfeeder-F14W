@@ -40,4 +40,7 @@ jspm_packages
 .idea/
 .vscode/
 *.swp
-*.swo 
+*.swo
+
+# Project specific
+index.js.switch 
